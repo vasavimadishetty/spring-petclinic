@@ -1,6 +1,6 @@
 ---
 trigger:
-  -main
+  - main
 parameters:
   - name: goal
     displayName: mavengoal
@@ -29,5 +29,6 @@ stages:
               contents: 'target/spring-petclinic-3.2.0-SNAPSHOT.jar'
               targetFolder: $(Build.ArtifactStagingDirectory)
           - task: PublishBuildArtifacts@1
-            inputs: pathToPublish:$(Build.ArtifactStagingDirectory)
+            inputs: 
+              pathToPublish: $(Build.ArtifactStagingDirectory)
               artifactName: MyBuildOutputs
