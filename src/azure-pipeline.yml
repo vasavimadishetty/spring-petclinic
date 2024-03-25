@@ -1,0 +1,33 @@
+---
+trigger:
+  -main
+parameters:
+  - name: goal
+    displayName: mavengoal
+    type: string
+    default: package
+    values:
+      - package
+      - cleanpackage
+      - install
+      - cleaninstall
+stages:
+  - stage: build
+    displayName: BuildStage
+    pool: 
+      name: Default
+    jobs:
+      - job: maven
+        displayName: BuildusingMaven
+        steps:
+          - task: Maven@4
+            inputs: 
+              mavenPOMFile: 'pom.xml'
+              goals: ${{parameters.goal}}
+          - task: CopyFiles@2
+            inputs: 
+              contents: 'target/spring-petclinic-3.2.0-SNAPSHOT.jar'
+              targetFolder: $(Build.ArtifactStagingDirectory)
+          - task: PublishBuildArtifacts@1
+            inputs: pathToPublish:$(Build.ArtifactStagingDirectory)
+              artifactName: MyBuildOutputs
