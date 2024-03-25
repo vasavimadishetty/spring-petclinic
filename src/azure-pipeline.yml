@@ -3,7 +3,7 @@ trigger:
   - main
 parameters:
   - name: goal
-    displayName: mavengoal
+    displayName: maven goal
     type: string
     default: package
     values:
