@@ -8,9 +8,9 @@ parameters:
     default: package
     values:
       - package
-      - cleanpackage
+      - clean package
       - install
-      - cleaninstall
+      - clean install
 stages:
   - stage: build
     displayName: BuildStage
@@ -18,7 +18,7 @@ stages:
       name: Default
     jobs:
       - job: maven
-        displayName: BuildusingMaven
+        displayName: Build using Maven
         steps:
           - task: Maven@4
             inputs: 
